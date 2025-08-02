@@ -16,81 +16,84 @@ struct Login_Or_Register_View: View {
     @State private var inputText = ""
     var isFrom: String
     var body: some View {
-        NavigationView{
-            VStack(spacing: 0){
-                
-                Image("JOHNSON_LOGO")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(maxWidth: .infinity)
-                    .background(.white)
-                
-                Divider()
-                
-                Spacer(minLength: 30)
-                
-                VStack(alignment: .leading,spacing: 20){
+        ZStack{
+            Color(AppColor.viewBGColor ?? UIColor.white)
+                .ignoresSafeArea()
+            NavigationView{
+                VStack(spacing: 0){
                     
-                    VStack(alignment: .leading , spacing: 20){
+                    Image("JOHNSON_LOGO")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(maxWidth: .infinity)
+                        .background(.white)
+                    
+                    Divider()
+                    
+                    Spacer(minLength: 30)
+                    
+                    VStack(alignment: .leading,spacing: 20){
                         
-                        Text(isFrom == "LOGIN" ? "LOGIN" : "REGISTER" )
-                            .foregroundStyle(.black)
-                            .font(.system(size: 20))
-                            .fontWeight(.heavy)
-                        
-                        VStack(alignment: .leading) {
-                            Text("Mobile Number")
-                                .font(.system(size: 16, weight: .medium))
+                        VStack(alignment: .leading , spacing: 20){
                             
-                            CustomTextField(
-                                imageString: "phone",
-                                placeholder: "Enter your mobile number",
-                                text: $inputText
-                            )
+                            Text(isFrom == "LOGIN" ? "LOGIN" : "REGISTER" )
+                                .foregroundStyle(.black)
+                                .font(.system(size: 20))
+                                .fontWeight(.heavy)
                             
-                            if buttonTitle == "Verify"{
-                                OTPView()
-                                    .padding(.top, 10)
+                            VStack(alignment: .leading) {
+                                Text("Mobile Number")
+                                    .font(.system(size: 16, weight: .medium))
+                                
+                                CustomTextField(
+                                    imageString: "phone",
+                                    placeholder: "Enter your mobile number",
+                                    text: $inputText
+                                )
+                                
+                                if buttonTitle == "Verify"{
+                                    OTPView()
+                                        .padding(.top, 10)
+                                }
+                                
                             }
-                            
+                        }
+                        
+                        Spacer()
+                        CustomTapNavButton(text: buttonTitle) {
+                            if buttonTitle == "Generate OTP"{
+                                buttonTitle = "Verify"
+                            }else{
+                                navigateToNext = true
+                            }
+                        }
+                        if isFrom == "LOGIN" {
+                            NavigationLink(
+                                destination:
+                                    DashboardView()
+                                //                                .navigationBarBackButtonHidden(true)
+                                ,
+                                isActive: $navigateToNext,
+                                label: { EmptyView() }
+                            )
+                        } else {
+                            NavigationLink(
+                                destination:
+                                    ReferralCodeView()
+                                    .navigationBarBackButtonHidden(true),
+                                isActive: $navigateToNext,
+                                label: { EmptyView() }
+                            )
                         }
                     }
-                    
-                    Spacer()
-                    CustomTapNavButton(text: buttonTitle) {
-                        if buttonTitle == "Generate OTP"{
-                            buttonTitle = "Verify"
-                        }else{
-                            navigateToNext = true
-                        }
-                    }
-                    if isFrom == "LOGIN" {
-                        NavigationLink(
-                            destination:
-                                DashboardView()
-                            //                                .navigationBarBackButtonHidden(true)
-                            ,
-                            isActive: $navigateToNext,
-                            label: { EmptyView() }
-                        )
-                    } else {
-                        NavigationLink(
-                            destination:
-                                ReferralCodeView()
-                                .navigationBarBackButtonHidden(true),
-                            isActive: $navigateToNext,
-                            label: { EmptyView() }
-                        )
-                    }
+                    .padding(.horizontal,15)
                 }
-                .padding(.horizontal,15)
+                .navigationBarItems(leading: Button(action: {
+                    dismiss()
+                }, label: {
+                    Image("BackArrow")
+                }))
             }
-            .navigationBarItems(leading: Button(action: {
-                dismiss()
-            }, label: {
-                Image("BackArrow")
-            }))
-            .background(Color(AppColor.viewBGColor ?? UIColor.white))
         }
         .onChange(of: navigateToNext) { newValue in
             if !newValue {

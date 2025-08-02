@@ -10,65 +10,64 @@ import SwiftUI
 struct ChooseLogin_or_Register_View: View {
     @Environment(\.dismiss) var dismiss
     var body: some View {
-        NavigationView{
-            VStack(spacing: 0){
-                Image("JOHNSON_LOGO")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(maxWidth: .infinity)
-                    .background(.white)
-                
-                Divider()
-                
-                Spacer(minLength: 30)
-                
-                VStack(alignment: .leading,spacing: 20){
+        ZStack{
+            Color(AppColor.viewBGColor ?? UIColor.white)
+                .ignoresSafeArea()
+            NavigationView{
+                VStack(spacing: 0){
+                    Image("JOHNSON_LOGO")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(maxWidth: .infinity)
+                        .background(.white)
                     
-                    VStack(alignment: .leading){
+                    Divider()
+                    
+                    Spacer(minLength: 30)
+                    
+                    VStack(alignment: .leading,spacing: 20){
                         
-                        Text("LOGIN/CREATE YOUR ACCOUNT")
-                            .foregroundStyle(.black)
-                            .font(.system(size: 20))
-                            .fontWeight(.heavy)
+                        VStack(alignment: .leading){
+                            
+                            Text("LOGIN/CREATE YOUR ACCOUNT")
+                                .foregroundStyle(.black)
+                                .font(.system(size: 20))
+                                .fontWeight(.heavy)
+                        }
+                        
+                        VStack(spacing: 15){
+                            
+                            CustomerTypeButton(
+                                custImage: "Login",
+                                custType: "LOGIN",
+                                destinationView:
+                                    Login_Or_Register_View(isFrom: "LOGIN")
+                                    .navigationBarBackButtonHidden(true)
+                            )
+                            
+                            CustomerTypeButton(
+                                custImage: "Register",
+                                custType: "REGISTER",
+                                destinationView:
+                                    Login_Or_Register_View(isFrom: "REGISTER")
+                                    .navigationBarBackButtonHidden(true)
+                            )
+                            
+                        }
+                        
+                        Spacer()
                     }
-                    
-                    VStack(spacing: 15){
-                        
-                        CustomerTypeButton(
-                            custImage: "Login",
-                            custType: "LOGIN",
-                            destinationView:
-                                Login_Or_Register_View(isFrom: "LOGIN")
-                                .navigationBarBackButtonHidden(true)
-                        )
-                        
-                        CustomerTypeButton(
-                            custImage: "Register",
-                            custType: "REGISTER",
-                            destinationView:
-                                Login_Or_Register_View(isFrom: "REGISTER")
-                                .navigationBarBackButtonHidden(true)
-                        )
-                        
-                    }
-                    
-                    Spacer()
+                    .padding()
                 }
-                .padding()
+                .navigationBarItems(
+                    leading:
+                        Button(action: {
+                            dismiss()
+                        }, label: {
+                            Image("BackArrow")
+                        })
+                )  
             }
-            .navigationBarItems(
-                leading:
-                    Button(action: {
-                        dismiss()
-                    }, label: {
-                        Image("BackArrow")
-                    })
-            )
-            .background(Color(AppColor.viewBGColor ?? UIColor.white))
-            .ignoresSafeArea()
-            .padding(.top ,0.3)
-            
-            
         }
     }
 }

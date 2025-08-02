@@ -21,6 +21,7 @@ struct ChooseLanguageView: View {
                     .scaledToFit()
                     .frame(maxWidth: .infinity)
                     .background(.white)
+                    
                 
                 Divider()
                 Spacer()
@@ -99,7 +100,7 @@ struct ChooseLanguageView: View {
                             }
                     }
                 }
-                
+                .padding(15)
                 Spacer()
                 Spacer()
                 
@@ -108,8 +109,8 @@ struct ChooseLanguageView: View {
                     action:{
                         navigateToNext = true
                     })
-                //                .padding(8)
-                
+                .padding(15)
+                .padding(.bottom, 10)
                 NavigationLink(
                     destination:
                         ChooseCustomerTypeView()
@@ -121,8 +122,8 @@ struct ChooseLanguageView: View {
             }
             
         }
-        .padding(15)
-        .padding(.bottom, 10)
+        
+        
     }
     }
 }

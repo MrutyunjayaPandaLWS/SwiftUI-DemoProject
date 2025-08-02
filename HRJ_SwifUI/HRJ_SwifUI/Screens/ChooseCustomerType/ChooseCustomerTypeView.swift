@@ -10,76 +10,76 @@ import SwiftUI
 struct ChooseCustomerTypeView: View {
     @Environment(\.dismiss) var dismiss
     var body: some View {
-        NavigationView{
-            VStack(spacing: 0){
+        ZStack{
+            Color(AppColor.viewBGColor ?? UIColor.white)
+                .ignoresSafeArea()
+            
+            NavigationView{
                 
-                Image("JOHNSON_LOGO")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(maxWidth: .infinity)
-                    .background(.white)
-                
-                Divider()
-
-                Spacer(minLength: 30)
-                
-                VStack(alignment: .leading,spacing: 20){
+                VStack(spacing: 0){
                     
-                    VStack(alignment: .leading){
+                    Image("JOHNSON_LOGO")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(maxWidth: .infinity)
+                        .background(.white)
+                    
+                    Divider()
+                    
+                    Spacer(minLength: 30)
+                    
+                    VStack(alignment: .leading,spacing: 20){
                         
-                        Text("Select your")
-                            .font(.system(size: 16, weight: .medium))
-                            .font(.title)
+                        VStack(alignment: .leading){
                             
-                        Text("CUSTOMER TYPE")
-                            .foregroundStyle(.black)
-                            .font(.system(size: 20))
-                            .fontWeight(.heavy)
+                            Text("Select your")
+                                .font(.system(size: 16, weight: .medium))
+                                .font(.title)
+                            
+                            Text("CUSTOMER TYPE")
+                                .foregroundStyle(.black)
+                                .font(.system(size: 20))
+                                .fontWeight(.heavy)
+                        }
+                        
+                        VStack(spacing: 15){
+                            
+                            CustomerTypeButton(
+                                custImage: "Plumber",
+                                custType: "I am a Plumber",
+                                destinationView:
+                                    ChooseLogin_or_Register_View()
+                                    .navigationBarBackButtonHidden(true)
+                            )
+                            
+                            CustomerTypeButton(
+                                custImage: "CSM",
+                                custType: "I am a CSM",
+                                destinationView:
+                                    ChooseLogin_or_Register_View()
+                                    .navigationBarBackButtonHidden(true)
+                            )
+                            
+                            CustomerTypeButton(
+                                custImage: "Mason",
+                                custType: "I am a Mason/Contractor",
+                                destinationView:
+                                    ChooseLogin_or_Register_View()
+                                    .navigationBarBackButtonHidden(true)
+                            )
+                        }
+                        
+                        Spacer()
                     }
+                    .padding()
                     
-                    VStack(spacing: 15){
-                        
-                        CustomerTypeButton(
-                            custImage: "Plumber",
-                            custType: "I am a Plumber",
-                            destinationView:
-                                ChooseLogin_or_Register_View()
-                                    .navigationBarBackButtonHidden(true)
-                        )
-                        
-                        CustomerTypeButton(
-                            custImage: "CSM",
-                            custType: "I am a CSM",
-                            destinationView:
-                                ChooseLogin_or_Register_View()
-                                    .navigationBarBackButtonHidden(true)
-                        )
-                        
-                        CustomerTypeButton(
-                            custImage: "Mason",
-                            custType: "I am a Mason/Contractor",
-                            destinationView:
-                                ChooseLogin_or_Register_View()
-                                    .navigationBarBackButtonHidden(true)
-                        )
-                    }
-                    
-                    Spacer()
                 }
-                .padding()
-                
+                .navigationBarItems(leading: Button(action: {
+                    dismiss()
+                }, label: {
+                    Image("BackArrow")
+                }))
             }
-            .navigationBarItems(leading: Button(action: {
-                dismiss()
-            }, label: {
-                Image("BackArrow")
-            })
-                                  )
-            .background(Color(AppColor.viewBGColor ?? UIColor.white))
-            .ignoresSafeArea()
-            .padding(.top ,0.3)
-          
-
         }
     }
 }
