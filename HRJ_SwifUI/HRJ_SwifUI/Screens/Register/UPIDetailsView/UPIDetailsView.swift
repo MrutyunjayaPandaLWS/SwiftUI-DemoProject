@@ -12,16 +12,16 @@ struct UPIDetailsView: View {
     @State private var cityText = ""
     @State private var pincodeText = ""
     @State private var preferredDealerNameText = ""
-    @State private var upiIdText = "" // Added UPI ID state
-    @State private var showSuccessView = false // Corrected state variable name
+    @State private var upiIdText = ""
+    @State private var showSuccessView = false
     
     var body: some View {
         ZStack {
-            // Main content of the view
             Color(AppColor.viewBGColor ?? .white)
+            
             NavigationView {
                 VStack(spacing: 0) {
-                    // Top white background section with LineDesign
+                    
                     VStack(spacing: 0) {
                         LineDesign(isProgress: .UPIDetails)
                             .padding(.top, 40)
@@ -31,7 +31,7 @@ struct UPIDetailsView: View {
                     .background(Color.white)
 //                    .padding(.bottom, -1)  To hide the small gap between the divider and the content below
                     
-                    // Main content section with custom background color
+                    
                     VStack(alignment: .leading, spacing: 20) {
                         
                         Text("UPI DETAILS")
@@ -114,10 +114,10 @@ struct UPIDetailsView: View {
                             }
                         }
                         
-                        Spacer() // Pushes all content above it to the top
+                        Spacer()
                     }
                     .padding(.bottom, 20)
-                    // The background modifier is removed here to allow the main view's background to show through.
+                    
                     
                     // MARK: - Buttons Vstack remains fixed at the bottom
                     VStack(spacing: 20) {
@@ -132,10 +132,9 @@ struct UPIDetailsView: View {
                         }
                     }
                     
-                    .padding(.vertical, 20) // Add top padding to separate buttons from scrollable content
+                    .padding(.vertical, 20)
                     
                 }
-//                .background(Color(AppColor.viewBGColor ?? .white)) // The main VStack now has the gray background
                 .navigationBarItems(leading: Button(action: {
                     dismiss()
                 }, label: {
@@ -150,7 +149,6 @@ struct UPIDetailsView: View {
             }
         }
         .ignoresSafeArea(.all)
-        // Sheet modifier is restored here
         .sheet(isPresented: $showSuccessView) {
             SuccessView()
                 .presentationDetents([.medium])
