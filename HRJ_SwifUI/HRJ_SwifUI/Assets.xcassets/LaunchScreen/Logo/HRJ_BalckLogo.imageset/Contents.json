@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "CORPORATE-+-TILES-BATH-EDT.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "CORPORATE-+-TILES-BATH-EDT@2x.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "CORPORATE-+-TILES-BATH-EDT@3x.png",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

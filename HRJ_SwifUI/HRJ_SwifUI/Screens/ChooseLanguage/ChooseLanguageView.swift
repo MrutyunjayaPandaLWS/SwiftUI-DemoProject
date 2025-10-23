@@ -16,11 +16,16 @@ struct ChooseLanguageView: View {
                         .ignoresSafeArea()
         NavigationView{
             VStack(spacing: 0 ){
-                Image("JOHNSON_LOGO")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(maxWidth: .infinity)
-                    .background(.white)
+                
+                VStack {
+                    Image("JOHNSON_LOGO")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(maxWidth: .infinity)
+                    
+                }
+                .background(.white)
+                .frame(maxWidth: .infinity)
                     
                 
                 Divider()

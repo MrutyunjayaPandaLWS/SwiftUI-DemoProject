@@ -4,33 +4,25 @@ struct UPIDetailsView: View {
     
     @State private var buttonTitle = "Submit"
     @State private var navigateToNext = false
-    @State private var mobileNumberText = ""
     @State private var nameText = ""
-    @State private var emailText = ""
-    @State private var addressText = ""
-    @State private var stateText = ""
-    @State private var cityText = ""
-    @State private var pincodeText = ""
-    @State private var preferredDealerNameText = ""
     @State private var upiIdText = ""
     @State private var showSuccessView = false
     
     var body: some View {
         ZStack {
             Color(AppColor.viewBGColor ?? .white)
+                .ignoresSafeArea(.all)
             
             NavigationView {
-                VStack(spacing: 0) {
+                VStack(alignment: .leading, spacing: 0) {
                     
-                    VStack(spacing: 0) {
+                    VStack {
                         LineDesign(isProgress: .UPIDetails)
                             .padding(.top, 40)
                             .padding(.bottom, 20)
                         Divider()
                     }
-                    .background(Color.white)
-//                    .padding(.bottom, -1)  To hide the small gap between the divider and the content below
-                    
+                    .background(Color(AppColor.SolidWhite ?? .white))
                     
                     VStack(alignment: .leading, spacing: 20) {
                         
@@ -115,25 +107,22 @@ struct UPIDetailsView: View {
                         }
                         
                         Spacer()
-                    }
-                    .padding(.bottom, 20)
-                    
-                    
-                    // MARK: - Buttons Vstack remains fixed at the bottom
-                    VStack(spacing: 20) {
-                        CustomTapNavButton_2(text: "Skip") {
-                            print("Skip UPI Details Clicked")
-                            navigateToNext = true
+                        
+                        VStack(spacing: 20) {
+                            CustomTapNavButton_2(text: "Skip") {
+                                print("Skip UPI Details Clicked")
+                                navigateToNext = true
+                            }
+                            
+                            CustomTapNavButton(text: "Submit") {
+                                print("Submit UPI Details Clicked")
+                                self.showSuccessView = true
+                            }
                         }
                         
-                        CustomTapNavButton(text: "Submit") {
-                            print("Submit UPI Details Clicked")
-                            self.showSuccessView = true
-                        }
+                        .padding(.bottom, 20)
                     }
-                    
-                    .padding(.vertical, 20)
-                    
+                    .padding(15)
                 }
                 .navigationBarItems(leading: Button(action: {
                     dismiss()
@@ -143,25 +132,23 @@ struct UPIDetailsView: View {
                         .scaledToFit()
                         .frame(width: 20, height: 20)
                     
-                }).padding(.leading, -10)
+                })
                 )
                 
             }
         }
-        .ignoresSafeArea(.all)
+        
         .sheet(isPresented: $showSuccessView) {
+            Spacer()
             SuccessView()
                 .presentationDetents([.medium])
                 .presentationBackground(.ultraThinMaterial)
                 .presentationCornerRadius(80)
         }
-        
-//            .padding(15)
     }
 }
 
 // MARK: - Preview Provider
 #Preview {
     UPIDetailsView()
-        .padding(15)
 }

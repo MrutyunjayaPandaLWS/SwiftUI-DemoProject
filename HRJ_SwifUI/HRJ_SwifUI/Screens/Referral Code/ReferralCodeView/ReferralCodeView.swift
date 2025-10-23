@@ -25,15 +25,12 @@ struct ReferralCodeView: View {
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 50, height: 50)
-                                .padding(.trailing, 15)
-                        }
-                        
-                        Divider()
-                   
+                        }.padding(15)
                     }
-                    .frame(maxWidth: .infinity)
                     .background(.white)
+                    .frame(maxWidth: .infinity)
                     
+                    Divider()
                     Spacer()
                     
                     VStack(spacing: 40){
@@ -45,7 +42,7 @@ struct ReferralCodeView: View {
                             
                             TextField("Enter referral Code", text: $inputText)
                                 .foregroundStyle(.black)
-                                .font(.system(size: 24, weight: .medium))
+                                .font(.system(size: 20, weight: .medium))
                                 .multilineTextAlignment(.center)
                                 .background(
                                     RoundedRectangle(cornerRadius: 8)
@@ -68,21 +65,20 @@ struct ReferralCodeView: View {
                             }
                         }
                         Spacer()
+                        
+                        NavigationLink(
+                            destination:
+                                RegisterView()
+                                .navigationBarBackButtonHidden(true)
+                            ,
+                            isActive: $navigateToNext,
+                            label: { EmptyView() }
+                        )
                     }
                     .padding(.top)
-                    
-                    Spacer()
-                    
-                    NavigationLink(
-                        destination:
-                            RegisterView()
-                            .navigationBarBackButtonHidden(true)
-                        ,
-                        isActive: $navigateToNext,
-                        label: { EmptyView() }
-                    )
+                    .padding(15)
                 }
-                .padding(15)
+                
                 .navigationBarItems(leading: Button(action: {
                     dismiss()
                 }, label: {

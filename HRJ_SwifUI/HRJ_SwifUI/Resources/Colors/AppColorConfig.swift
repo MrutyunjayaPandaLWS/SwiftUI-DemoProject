@@ -12,5 +12,8 @@ struct AppColor {
     static let buttonBGColor = UIColor(named: "ButtonBGColor")
     static let viewBGColor = UIColor(named: "ViewBGColor")
     static let deepDarkRedColor = UIColor(named: "DeepDarkRed")
+    static let SolidWhite = UIColor(named: "SolidWhite")
+    static let LightPink = UIColor(named: "LightPink")
+    
     
 }
