@@ -15,12 +15,17 @@ struct ChooseLogin_or_Register_View: View {
                 .ignoresSafeArea()
             NavigationView{
                 VStack(spacing: 0){
-                    Image("JOHNSON_LOGO")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(maxWidth: .infinity)
-                        .background(.white)
                     
+                    VStack {
+                        Image("JOHNSON_LOGO")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(maxWidth: .infinity)
+                        
+                    }
+                    .background(.white)
+                    .frame(maxWidth: .infinity)
+                
                     Divider()
                     
                     Spacer(minLength: 30)
@@ -57,7 +62,7 @@ struct ChooseLogin_or_Register_View: View {
                         
                         Spacer()
                     }
-                    .padding()
+                    .padding(15)
                 }
                 .navigationBarItems(
                     leading:
